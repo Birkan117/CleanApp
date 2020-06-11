@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace MyCleanApp.Core.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
-        public string Id { get; set; }
         [StringLength(20)]
         [DisplayName("Product Name")]
         public string Name { get; set; }
@@ -19,12 +18,6 @@ namespace MyCleanApp.Core.Models
         public decimal Price { get; set; }
         public string Categaroy { get; set; }
         public string Image { get; set; }
-
-        //This is a constructor. Every time a instance of a product is created this constructor will generate an ID.
-        public Product()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
 
     }
 }

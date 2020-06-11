@@ -11,12 +11,13 @@ namespace MyCleanApp.WebUI.Controllers
     public class ProductCategoryManagerController : Controller
     {
         //Need To first create an instance of the product repository
-        ProductCategoryRepository context;
+        //ProductCategoryRepository context;
 
+        InMemoryRepository<ProductCategory> context;
         //Then create a constructor of the productManagerController that initialises the product repository
         public ProductCategoryManagerController()
         {
-            context = new ProductCategoryRepository();
+            context = new InMemoryRepository<ProductCategory>();
         }
         // GET: ProductManager
         public ActionResult Index()
