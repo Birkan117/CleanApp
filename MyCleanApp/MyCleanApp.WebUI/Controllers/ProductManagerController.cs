@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyCleanApp.Core.Models;
+using MyCleanApp.Core.ViewModels;
 using MyCleanApp.DataAccess.InMemory;
 
 namespace MyCleanApp.WebUI.Controllers
@@ -12,11 +13,13 @@ namespace MyCleanApp.WebUI.Controllers
     {
         //Need To first create an instance of the product repository
         ProductRepository context;
+        ProductCategoryRepository productCategories;
 
         //Then create a constructor of the productManagerController that initialises the product repository
         public ProductManagerController()
         {
             context = new ProductRepository();
+            productCategories = new ProductCategoryRepository();
         }
         // GET: ProductManager
         public ActionResult Index()
@@ -28,8 +31,12 @@ namespace MyCleanApp.WebUI.Controllers
         //Method to create the product
         public ActionResult Create()
         {
-            Product product = new Product();
-            return View(product);
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+            viewModel.Product = new Product();
+            //Gets the product categories from the database
+            viewModel.ProductCategories = productCategories.Collection();
+
+            return View(viewModel);
         }
         [HttpPost]
         public ActionResult Create(Product product)
@@ -55,7 +62,12 @@ namespace MyCleanApp.WebUI.Controllers
             }
             else
             {
-                return View(product);
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+                viewModel.Product = product;
+                //Gets the product categories from the database
+                viewModel.ProductCategories = productCategories.Collection();
+                return View(viewModel);
+
             }
         }
         [HttpPost]
