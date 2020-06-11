@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +236,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ProductManager\Index.cshtml" />
+    <Content Include="Views\ProductManager\Create.cshtml" />
+    <Content Include="Views\ProductManager\Edit.cshtml" />
+    <Content Include="Views\ProductManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -251,6 +256,24 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyCleanApp.Core\MyCleanApp.Core.csproj">
+      <Project>{2ecb6d5f-11c2-418e-96e7-ef9706d68104}</Project>
+      <Name>MyCleanApp.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyCleanApp.DataAccess.InMemory\MyCleanApp.DataAccess.InMemory.csproj">
+      <Project>{2526212a-541e-48ac-a3ef-3a4d55916c5d}</Project>
+      <Name>MyCleanApp.DataAccess.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyCleanApp.DataAccess.SQL\MyCleanApp.DataAccess.SQL.csproj">
+      <Project>{a162910b-8657-4acd-9630-751e6911e680}</Project>
+      <Name>MyCleanApp.DataAccess.SQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyCleanApp.Services\MyCleanApp.Services.csproj">
+      <Project>{e979f925-449d-4004-9210-a9b65899d641}</Project>
+      <Name>MyCleanApp.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
