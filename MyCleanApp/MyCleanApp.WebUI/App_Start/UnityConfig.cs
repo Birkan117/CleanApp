@@ -1,6 +1,7 @@
 using MyCleanApp.Core.Contracts;
 using MyCleanApp.Core.Models;
 using MyCleanApp.DataAccess.InMemory;
+using MyCleanApp.DataAccess.SQL;
 using System;
 
 using Unity;
@@ -46,8 +47,13 @@ namespace MyCleanApp.WebUI
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
 
-            container.RegisterType<IRepository<Product>, InMemoryRepository<Product>>();
-            container.RegisterType<IRepository<ProductCategory>, InMemoryRepository<ProductCategory>>();
+            //These injections where when we was using InMemoryRepositories
+            //container.RegisterType<IRepository<Product>, InMemoryRepository<Product>>();
+            //container.RegisterType<IRepository<ProductCategory>, InMemoryRepository<ProductCategory>>();
+
+            //This is now using SQLRepository
+            container.RegisterType<IRepository<Product>, SQLRepository<Product>>();
+            container.RegisterType<IRepository<ProductCategory>, SQLRepository<ProductCategory>>();
         }
     }
 }
