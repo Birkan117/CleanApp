@@ -1,4 +1,5 @@
-﻿using MyCleanApp.Core.Models;
+﻿using MyCleanApp.Core.Contracts;
+using MyCleanApp.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace MyCleanApp.DataAccess.InMemory
 {
     //<T> makes it a generic class
-    public class InMemoryRepository<T> where T : BaseEntity
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
@@ -23,7 +24,7 @@ namespace MyCleanApp.DataAccess.InMemory
             //Grabs the name of our class that we are passing through here.
             className = typeof(T).Name;
             items = cache[className] as List<T>;
-            if (items==null)
+            if (items == null)
             {
                 items = new List<T>();
             }

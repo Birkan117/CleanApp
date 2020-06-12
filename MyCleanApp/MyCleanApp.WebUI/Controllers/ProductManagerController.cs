@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MyCleanApp.Core.Contracts;
 using MyCleanApp.Core.Models;
 using MyCleanApp.Core.ViewModels;
 using MyCleanApp.DataAccess.InMemory;
@@ -16,13 +17,20 @@ namespace MyCleanApp.WebUI.Controllers
         //ProductCategoryRepository productCategories;
 
 
-        InMemoryRepository<Product> context;
-        InMemoryRepository<ProductCategory> productCategories;
+        //InMemoryRepository<Product> context;
+        //InMemoryRepository<ProductCategory> productCategories;
+        
+        //The Code will now use IRepository instead (Due to dependancy injection)
+        IRepository<Product> context;
+        IRepository<ProductCategory> productCategories;
+
+
         //Then create a constructor of the productManagerController that initialises the product repository
-        public ProductManagerController()
+        //Injecting the classes through the constructor bellow. "IRepository<>"
+        public ProductManagerController(IRepository<Product> productContext, IRepository<ProductCategory> productCategoryContext )
         {
-            context = new InMemoryRepository<Product>();
-            productCategories = new InMemoryRepository<ProductCategory>();
+            context = productContext;
+            productCategories = productCategoryContext;
         }
         // GET: ProductManager
         public ActionResult Index()

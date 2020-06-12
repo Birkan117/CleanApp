@@ -1,4 +1,5 @@
-﻿using MyCleanApp.Core.Models;
+﻿using MyCleanApp.Core.Contracts;
+using MyCleanApp.Core.Models;
 using MyCleanApp.DataAccess.InMemory;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,16 @@ namespace MyCleanApp.WebUI.Controllers
         //Need To first create an instance of the product repository
         //ProductCategoryRepository context;
 
-        InMemoryRepository<ProductCategory> context;
+        //InMemoryRepository<ProductCategory> context;
+
+        //The Code will now use IRepository instead (Due to dependancy injection)
+        IRepository<ProductCategory> context;
+
         //Then create a constructor of the productManagerController that initialises the product repository
-        public ProductCategoryManagerController()
+        //Injecting the classes through the constructor bellow. "IRepository<>"
+        public ProductCategoryManagerController(IRepository<ProductCategory> context)
         {
-            context = new InMemoryRepository<ProductCategory>();
+            this.context = context;
         }
         // GET: ProductManager
         public ActionResult Index()
